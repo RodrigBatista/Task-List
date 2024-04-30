@@ -9,12 +9,12 @@ $(document).ready(function(){
 
     $('form').on('submit', function(e) {
         e.preventDefault();
-        const enderecoDaNovaImagem = $('#endereco-imagem-nova').val(); // .val(): Essa função do jQuery é utilizada para obter ou definir o valor de um elemento de formulário. Ela é comumente usada em elementos como <input>, <select> e <textarea> para manipular o valor desses elementos. Quando usada sem argumentos, ela retorna o valor atual do elemento selecionado.
+        const NomeDaNovaTarefa = $('#nome-nova-tarefa').val(); // .val(): Essa função do jQuery é utilizada para obter ou definir o valor de um elemento de formulário. Ela é comumente usada em elementos como <input>, <select> e <textarea> para manipular o valor desses elementos. Quando usada sem argumentos, ela retorna o valor atual do elemento selecionado.
         const novoItem = $('<li style="display: none"></li>');
-        $(`${enderecoDaNovaImagem}`).appendTo(novoItem);
+        $(`${NomeDaNovaTarefa}`).appendTo(novoItem);
         $(`
             <li>
-            <p>${enderecoDaNovaImagem}</p>
+            <p>${NomeDaNovaTarefa}</p>
             </li>
             `).appendTo(novoItem);
             $(novoItem).appendTo('ul');
@@ -22,10 +22,15 @@ $(document).ready(function(){
             Fade-in: Efeito de transição visual utilizados no desenvolvimento web. É usado quando você deseja que um elemento seja exibido gradualmente na página. Ao aplicar o efeito fade-in, o elemento começa invisível e, em seguida, vai aumentando gradativamente a opacidade até ficar completamente visível. 
             
             Fade-out: Efeito de transição visual utilizados no desenvolvimento web. É usado quando você deseja que um elemento seja removido gradualmente da página. Ao aplicar o efeito fade-out, o elemento vai diminuindo gradativamente a opacidade até ficar completamente invisível, e então pode ser removido da visualização ou ocultado*/
-            $('#endereco-imagem-nova').val('')
+            $('#nome-nova-tarefa').val('')
     })
 })
 
-$('.tarefas').click(function() {
-    $('li').css('text-decoration', 'line-through');
-})
+$(document).on('click', 'li', function() {
+    var textDecoration = $(this).css('text-decoration');
+    if (textDecoration.includes('line-through')) {
+        $(this).css('text-decoration', 'none');
+    } else {
+        $(this).css('text-decoration', 'line-through');
+    }
+});
